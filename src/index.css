@@ -1,1 +1,167 @@
 @import "tailwindcss";
+
+@theme {
+  --color-neon-cyan: #00ffff;
+  --color-neon-magenta: #ff00ff;
+  --color-neon-green: #00ff41;
+  --color-neon-amber: #ffcc00;
+  --color-dark-900: #050508;
+  --color-dark-800: #0f111a;
+  --color-dark-700: #1a1d2b;
+  --font-orbitron: 'Orbitron', sans-serif;
+  --font-mono-tech: 'Share Tech Mono', monospace;
+  --font-jp: 'Noto Sans JP', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #050508 0%, #0f111a 50%, #0a0a12 100%);
+  background-attachment: fixed;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+/* Neon text effects */
+.neon-glow {
+  text-shadow: 0 0 5px #0ff, 0 0 10px #0ff, 0 0 20px #0ff;
+}
+.neon-pink {
+  text-shadow: 0 0 5px #f0f, 0 0 10px #f0f, 0 0 20px #f0f;
+}
+.neon-green-glow {
+  text-shadow: 0 0 5px #0f0, 0 0 10px #0f0, 0 0 15px #0f0;
+}
+
+/* Box neon effects */
+.box-neon {
+  box-shadow: 0 0 10px #0ff, inset 0 0 5px rgba(0, 255, 255, 0.2);
+}
+.box-neon-pink {
+  box-shadow: 0 0 10px #f0f, inset 0 0 5px rgba(255, 0, 255, 0.2);
+}
+.box-neon-green {
+  box-shadow: 0 0 10px #0f0, inset 0 0 5px rgba(0, 255, 0, 0.2);
+}
+
+/* Scanlines */
+.scanlines {
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0.1) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.glitch::before {
+  left: 2px;
+  color: #f0f;
+  z-index: -1;
+  animation: glitch-1 2s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -2px;
+  color: #0ff;
+  z-index: -1;
+  animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+  0% { clip-path: inset(20% 0 60% 0); }
+  20% { clip-path: inset(60% 0 10% 0); }
+  40% { clip-path: inset(40% 0 30% 0); }
+  60% { clip-path: inset(80% 0 5% 0); }
+  80% { clip-path: inset(10% 0 70% 0); }
+  100% { clip-path: inset(50% 0 30% 0); }
+}
+@keyframes glitch-2 {
+  0% { clip-path: inset(60% 0 20% 0); }
+  20% { clip-path: inset(10% 0 70% 0); }
+  40% { clip-path: inset(70% 0 10% 0); }
+  60% { clip-path: inset(30% 0 50% 0); }
+  80% { clip-path: inset(50% 0 30% 0); }
+  100% { clip-path: inset(20% 0 60% 0); }
+}
+
+/* Typing cursor */
+.typing-cursor::after {
+  content: '█';
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Particles */
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: rgba(0, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: rise 10s linear infinite;
+}
+@keyframes rise {
+  0% { transform: translateY(100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Tab transitions */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.3s ease-in;
+}
+.tab-content.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Code blocks */
+pre {
+  white-space: pre-wrap;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0f111a;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffff44;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ffff88;
+}
